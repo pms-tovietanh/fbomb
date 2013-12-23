@@ -6,6 +6,7 @@ import com.artemis.managers.GroupManager;
 import com.emhoclaptrinh.fbomb.components.Bomb;
 import com.emhoclaptrinh.fbomb.components.BombAttacker;
 import com.emhoclaptrinh.fbomb.components.Bounds;
+import com.emhoclaptrinh.fbomb.components.Fire;
 import com.emhoclaptrinh.fbomb.components.LastPosition;
 import com.emhoclaptrinh.fbomb.components.Position;
 import com.emhoclaptrinh.fbomb.components.Sprite;
@@ -80,28 +81,31 @@ public class EntityFactory {
 		return e;
 	}
 	
-	public static void CreateFireForBomb(World world,float x, float y, int length){
+	public static Entity createFire(World world, float x, float y, String sprite){
+		Entity e = world.createEntity();
+		
+		e.addComponent(new Position(x,y));
+		e.addComponent(new Sprite(sprite));
+		e.addComponent(new Fire());
+		e.addComponent(new Bounds(16,16));
+		world.getManager(GroupManager.class).add(e, Constants.EntityGroups.Fire);
+		
+		return e;
+	}
+	
+	public static void createFireForBomb(World world,float x, float y, int length){
 		//center
-		Entity center = world.createEntity();
-		center.addComponent(new Position(x, y));
-		Sprite c_fire= new Sprite();
-		c_fire.name = "c_fire";
-		center.addComponent(c_fire);
-		center.addToWorld();
+		createFire(world, x, y, "c_fire").addToWorld();
 		
 		for(int i = 1; i <= length;i++){
 			for(int d = 0; d < 4;d++){
-				Entity m = world.createEntity();
-				m.addComponent(new Position(x+Constants.dx[d]*i*16, y+Constants.dy[d]*i*16));
-				m.addComponent(new Sprite(Constants.middleFireSprites[d]));
-				m.addToWorld();
+				createFire(world, x+Constants.dx[d]*i*16, y+Constants.dy[d]*i*16, 
+						Constants.middleFireSprites[d]).addToWorld();
 			}
 		}
 		for(int d =0;d<4;d++){
-			Entity e = world.createEntity();
-			e.addComponent(new Position(x+Constants.dx[d]*(length+1)*16, y+Constants.dy[d]*(length+1)*16));
-			e.addComponent(new Sprite(Constants.endFireSprites[d]));
-			e.addToWorld();
+			createFire(world, x+Constants.dx[d]*(length+1)*16, x+Constants.dy[d]*(length+1)*16, 
+					Constants.endFireSprites[d]).addToWorld();
 		}
 	}
 }

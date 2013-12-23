@@ -25,7 +25,7 @@ public class BombCountDownSystem extends EntityProcessingSystem {
 		b.countDown -= world.delta;
 		if(b.countDown<0){
 			Position position = pm.get(e);
-			EntityFactory.CreateFireForBomb(world, position.x, position.y, b.bombLength);
+			EntityFactory.createFireForBomb(world, position.x, position.y, b.bombLength);
 			e.deleteFromWorld();
 		}
 	}

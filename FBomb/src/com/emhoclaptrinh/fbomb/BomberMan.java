@@ -16,6 +16,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.emhoclaptrinh.fbomb.systems.BombCountDownSystem;
 import com.emhoclaptrinh.fbomb.systems.CollisionSystem;
+import com.emhoclaptrinh.fbomb.systems.FireCountDownSystem;
 import com.emhoclaptrinh.fbomb.systems.MovementSystem;
 import com.emhoclaptrinh.fbomb.systems.PlayerInputSystem;
 import com.emhoclaptrinh.fbomb.systems.renderers.BombAttackerRenderer;
@@ -62,6 +63,7 @@ public class BomberMan implements ApplicationListener {
 		world.setSystem(new MovementSystem());
 		world.setSystem(new CollisionSystem());
 		world.setSystem(new BombCountDownSystem());
+		world.setSystem(new FireCountDownSystem());
 		baRenderer = world.setSystem(new BombAttackerRenderer(camera), true);
 		spriteRenderer = world.setSystem(new SpriteRenderer(camera,batch),true);
 		

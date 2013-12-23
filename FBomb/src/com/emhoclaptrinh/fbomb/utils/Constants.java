@@ -12,5 +12,6 @@ public class Constants {
 		public static final String BombAttacker = "BombAttacker";
 		public static final String Brick = "Brick";
 		public static final String HardBrick = "HardBrick";
+		public static final String Fire = "Fire";
 	}
 }

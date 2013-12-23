@@ -8,6 +8,7 @@ import com.artemis.annotations.Mapper;
 import com.artemis.managers.GroupManager;
 import com.artemis.utils.Bag;
 import com.artemis.utils.ImmutableBag;
+import com.emhoclaptrinh.fbomb.components.BombAttacker;
 import com.emhoclaptrinh.fbomb.components.Bounds;
 import com.emhoclaptrinh.fbomb.components.LastPosition;
 import com.emhoclaptrinh.fbomb.components.Position;
@@ -36,6 +37,12 @@ public class CollisionSystem extends EntitySystem {
 				Position p = pm.get(a);
 				p.x = lp.x;
 				p.y = lp.y;
+			}
+		}));
+		collisionPairs.add(new CollisionPair(Constants.EntityGroups.BombAttacker, Constants.EntityGroups.Fire, new CollisionHandler() {
+			@Override
+			public void handleCollision(Entity a, Entity f) {
+				a.deleteFromWorld();
 			}
 		}));
 	}
@@ -81,6 +88,8 @@ public class CollisionSystem extends EntitySystem {
 			
 			Bounds b1 = bm.get(e1);
 			Bounds b2 = bm.get(e2);
+			
+			if(p1==null||p2==null||b1==null||b2==null)return false;
 			return (Math.abs(p1.x-p2.x)<(b1.width+b2.width)/2&&Math.abs(p1.y-p2.y)<(b1.height+b2.height)/2);
 		}
 	}
