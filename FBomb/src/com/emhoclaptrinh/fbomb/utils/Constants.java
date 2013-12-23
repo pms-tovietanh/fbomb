@@ -10,6 +10,8 @@ public class Constants {
 	
 	public class EntityGroups{
 		public static final String BombAttacker = "BombAttacker";
+		public static final String Player1 = "Player1";
+		public static final String Player2 = "Player2";
 		public static final String Brick = "Brick";
 		public static final String HardBrick = "HardBrick";
 		public static final String Fire = "Fire";

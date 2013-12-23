@@ -82,8 +82,9 @@ public class PlayerInputSystem extends EntityProcessingSystem implements InputPr
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		// TODO Auto-generated method stub
-		return false;
+		//TODO
+		System.out.println(screenX+" - "+screenY +" - " + pointer+" - "+button);
+		return true;
 	}
 
 	@Override
