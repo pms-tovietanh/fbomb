@@ -71,6 +71,7 @@ public class BomberMan implements ApplicationListener {
 		
 		EntityFactory.createBombAttacker(world, 24, 24).addToWorld();
 		EntityFactory.createHardBricks(world);
+		EntityFactory.createBombs(world);
 		
 		map = new TmxMapLoader().load(Gdx.files.internal("data/maps/map1.tmx").path());
 		mapRenderer = new OrthogonalTiledMapRenderer(map,1/Constants.GameWidth,batch);

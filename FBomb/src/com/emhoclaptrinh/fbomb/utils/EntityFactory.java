@@ -13,6 +13,9 @@ import com.emhoclaptrinh.fbomb.components.Sprite;
 import com.emhoclaptrinh.fbomb.components.Velocity;
 
 public class EntityFactory {
+	
+	public static Entity[][] Bombs;
+	
 	public static Entity createBombAttacker(World world,float x, float y){
 		Entity e = world.createEntity();
 		
@@ -82,6 +85,26 @@ public class EntityFactory {
 		return e;
 	}
 	
+	public static void createBombs(World world){
+		Bombs = new Entity[25][15];
+		for(int i = 0; i < 23;i++)
+			for(int j = 0; j < 13;j++){
+				if(i%2!=1||j%2!=1){
+					Entity e = createBomb(world, 24+i*16, 24+j*16);
+					e.addToWorld();
+					e.disable();
+					Bombs[i+1][j+1]=e;
+				}
+			}
+	}
+	public static boolean activeBomb(World world, int x, int y){
+		if(!Bombs[x][y].isEnabled()){
+			Bombs[x][y].enable();
+			return true;
+		}
+		return false;
+	}
+	
 	public static Entity createFire(World world, float x, float y, String sprite){
 		Entity e = world.createEntity();
 		
@@ -89,6 +112,7 @@ public class EntityFactory {
 		e.addComponent(new Sprite(sprite));
 		e.addComponent(new Fire());
 		e.addComponent(new Bounds(16,16));
+		
 		world.getManager(GroupManager.class).add(e, Constants.EntityGroups.Fire);
 		
 		return e;

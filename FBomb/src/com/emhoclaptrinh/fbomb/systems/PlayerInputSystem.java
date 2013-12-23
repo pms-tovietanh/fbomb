@@ -131,9 +131,9 @@ public class PlayerInputSystem extends EntityProcessingSystem implements InputPr
 		if(setBomb){
 			//get position
 			Position position = pm.get(e);
-			float x = (float)Math.floor(position.x/16)*16+8;
-			float y = (float)Math.floor(position.y/16)*16+8;
-			EntityFactory.createBomb(world, x, y).addToWorld();
+			int x = (int)Math.floor(position.x/16);
+			int y = (int)Math.floor(position.y/16);
+			EntityFactory.activeBomb(world, x, y);
 		}
 		
 	}
