@@ -77,6 +77,7 @@ public class EntityFactory {
 		Sprite sprite = new Sprite();
 		sprite.name = "bomb";
 		e.addComponent(sprite);
+		world.getManager(GroupManager.class).add(e, Constants.EntityGroups.Bomb);
 		
 		return e;
 	}
@@ -104,7 +105,7 @@ public class EntityFactory {
 			}
 		}
 		for(int d =0;d<4;d++){
-			createFire(world, x+Constants.dx[d]*(length+1)*16, x+Constants.dy[d]*(length+1)*16, 
+			createFire(world, x+Constants.dx[d]*(length+1)*16, y+Constants.dy[d]*(length+1)*16, 
 					Constants.endFireSprites[d]).addToWorld();
 		}
 	}

@@ -8,7 +8,7 @@ import com.artemis.annotations.Mapper;
 import com.artemis.managers.GroupManager;
 import com.artemis.utils.Bag;
 import com.artemis.utils.ImmutableBag;
-import com.emhoclaptrinh.fbomb.components.BombAttacker;
+import com.emhoclaptrinh.fbomb.components.Bomb;
 import com.emhoclaptrinh.fbomb.components.Bounds;
 import com.emhoclaptrinh.fbomb.components.LastPosition;
 import com.emhoclaptrinh.fbomb.components.Position;
@@ -19,6 +19,7 @@ public class CollisionSystem extends EntitySystem {
 	@Mapper ComponentMapper<Position> pm;
 	@Mapper ComponentMapper<Bounds> bm;
 	@Mapper ComponentMapper<LastPosition> lpm;
+	@Mapper ComponentMapper<Bomb> bom;
 	
 	private Bag<CollisionPair> collisionPairs;
 	
@@ -30,6 +31,7 @@ public class CollisionSystem extends EntitySystem {
 	@Override
 	protected void initialize() {
 		collisionPairs = new Bag<CollisionPair>();
+
 		collisionPairs.add(new CollisionPair(Constants.EntityGroups.BombAttacker, Constants.EntityGroups.Brick, new CollisionHandler() {
 			@Override
 			public void handleCollision(Entity a, Entity b) {
@@ -39,10 +41,19 @@ public class CollisionSystem extends EntitySystem {
 				p.y = lp.y;
 			}
 		}));
+		
 		collisionPairs.add(new CollisionPair(Constants.EntityGroups.BombAttacker, Constants.EntityGroups.Fire, new CollisionHandler() {
 			@Override
 			public void handleCollision(Entity a, Entity f) {
 				a.deleteFromWorld();
+			}
+		}));
+		
+		collisionPairs.add(new CollisionPair(Constants.EntityGroups.Bomb, Constants.EntityGroups.Fire, new CollisionHandler() {
+			@Override
+			public void handleCollision(Entity b, Entity f) {
+				Bomb bo = bom.get(b);
+				bo.countDown = -1;
 			}
 		}));
 	}
