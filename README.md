@@ -3,4 +3,4 @@ fbomb
 
 fbomb
 
-Free Bomberman game using libgdx.
+Bomberman game using libgdx.
