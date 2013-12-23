@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="25" height="15" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="pok-terrain" tilewidth="16" tileheight="16">
+  <image source="pok-terrain.png" width="128" height="16"/>
+ </tileset>
+ <layer name="grass" width="25" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjZGBgYBzFo3gUj+JRPKwwAFOoAXg=
+  </data>
+ </layer>
+ <layer name="bricks" width="25" height="15">
+  <properties>
+   <property name="Colidable" value="true"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjZmBgYKYDpiVAtoOW9Kg/iAOj/hj1By3AcPMHrTEA6XgBqw==
+  </data>
+ </layer>
+</map>

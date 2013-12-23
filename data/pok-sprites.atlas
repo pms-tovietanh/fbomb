@@ -1,0 +1,12 @@
+
+pok-sprites.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+front
+  rotate: false
+  xy: 6, 6
+  size: 18, 20
+  orig: 18, 20
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,159 @@
+
+bomberman.gif
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+front
+  rotate: false
+  xy: 9, 3
+  size: 18, 20
+  orig: 18, 20
+  offset: 0, 0
+  index: -1
+goDown0
+  rotate: false
+  xy: 9, 3
+  size: 18, 20
+  orig: 18, 20
+  offset: 0, 0
+  index: -1
+goDown1
+  rotate: false
+  xy: 29, 3
+  size: 18, 20
+  orig: 18, 20
+  offset: 0, 0
+  index: -1
+goDown2
+  rotate: false
+  xy: 9, 3
+  size: 18, 20
+  orig: 18, 20
+  offset: 0, 0
+  index: -1
+goDown3
+  rotate: false
+  xy: 354, 3
+  size: 18, 20
+  orig: 18, 20
+  offset: 0, 0
+  index: -1
+back
+  rotate: false
+  xy: 48, 3
+  size: 18, 20
+  orig: 18, 20
+  offset: 0, 0
+  index: -1
+goUp0
+  rotate: false
+  xy: 48, 3
+  size: 18, 20
+  orig: 18, 20
+  offset: 0, 0
+  index: -1
+goUp1
+  rotate: false
+  xy: 67, 3
+  size: 18, 20
+  orig: 18, 20
+  offset: 0, 0
+  index: -1
+goUp2
+  rotate: false
+  xy: 48, 3
+  size: 18, 20
+  orig: 18, 20
+  offset: 0, 0
+  index: -1
+goUp3
+  rotate: false
+  xy: 316, 3
+  size: 18, 20
+  orig: 18, 20
+  offset: 0, 0
+  index: -1
+left
+  rotate: false
+  xy: 86, 3
+  size: 18, 21
+  orig: 18, 21
+  offset: 0, 0
+  index: -1
+goLeft0
+  rotate: false
+  xy: 86, 3
+  size: 18, 21
+  orig: 18, 21
+  offset: 0, 0
+  index: -1
+goLeft1
+  rotate: false
+  xy: 106, 3
+  size: 18, 21
+  orig: 18, 21
+  offset: 0, 0
+  index: -1
+goLeft2
+  rotate: false
+  xy: 86, 3
+  size: 18, 21
+  orig: 18, 21
+  offset: 0, 0
+  index: -1
+goLeft3
+  rotate: false
+  xy: 125, 3
+  size: 18, 21
+  orig: 18, 21
+  offset: 0, 0
+  index: -1
+goRight0
+  rotate: false
+  xy: 296, 3
+  size: 18, 21
+  orig: 18, 21
+  offset: 0, 0
+  index: -1
+goRight1
+  rotate: false
+  xy: 277, 3
+  size: 18, 21
+  orig: 18, 21
+  offset: 0, 0
+  index: -1
+goRight2
+  rotate: false
+  xy: 296, 3
+  size: 18, 21
+  orig: 18, 21
+  offset: 0, 0
+  index: -1
+goRight3
+  rotate: false
+  xy: 257, 3
+  size: 18, 21
+  orig: 18, 21
+  offset: 0, 0
+  index: -1
+backleft
+  rotate: false
+  xy: 145, 3
+  size: 18, 20
+  orig: 18, 20
+  offset: 0, 0
+  index: -1
+frontleft
+  rotate: false
+  xy: 165, 3
+  size: 19, 20
+  orig: 19, 20
+  offset: 0, 0
+  index: -1
+bomb
+  rotate: false
+  xy: 129, 170
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
