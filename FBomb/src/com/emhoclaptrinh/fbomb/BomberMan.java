@@ -69,7 +69,8 @@ public class BomberMan implements ApplicationListener {
 		
 		world.initialize();
 		
-		EntityFactory.createBombAttacker(world, 24, 24).addToWorld();
+		EntityFactory.createBombAttacker(world, 24, 24,"",Constants.EntityGroups.Player1).addToWorld();
+		EntityFactory.createBombAttacker(world, 376, 216,"p2",Constants.EntityGroups.Player2).addToWorld();
 		EntityFactory.createHardBricks(world);
 		EntityFactory.createBombs(world);
 		

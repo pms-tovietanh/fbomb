@@ -19,6 +19,7 @@ public class BombAttacker extends Component {
 	public float movingRight = 0;
 	
 	public int bombLength = 1;
+	public int remainedBombs = 3;
 	
 	public boolean isStopped(){
 		return (movingUp==0&&movingDown==0&&movingRight==0&&movingLeft==0);

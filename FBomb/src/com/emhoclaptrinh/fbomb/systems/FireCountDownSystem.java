@@ -6,10 +6,12 @@ import com.artemis.Entity;
 import com.artemis.annotations.Mapper;
 import com.artemis.systems.EntityProcessingSystem;
 import com.emhoclaptrinh.fbomb.components.Fire;
+import com.emhoclaptrinh.fbomb.components.Position;
 
 public class FireCountDownSystem extends EntityProcessingSystem {
 	
 	@Mapper ComponentMapper<Fire> fm;
+	@Mapper ComponentMapper<Position> pm;
 	
 	@SuppressWarnings("unchecked")
 	public FireCountDownSystem() {
@@ -19,8 +21,13 @@ public class FireCountDownSystem extends EntityProcessingSystem {
 	@Override
 	protected void process(Entity e) {
 		Fire f = fm.get(e);
+		Position position = pm.get(e);
 		f.countDown-=world.delta;
-		if(f.countDown<0)e.deleteFromWorld();
+		
+		if(f.countDown<0){
+			e.deleteFromWorld();
+			System.out.println(position.x+" - "+position.y);
+		}
 	}
 
 }

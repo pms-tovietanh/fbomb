@@ -4,14 +4,15 @@ import com.artemis.Aspect;
 import com.artemis.ComponentMapper;
 import com.artemis.Entity;
 import com.artemis.annotations.Mapper;
+import com.artemis.managers.GroupManager;
 import com.artemis.systems.EntityProcessingSystem;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.emhoclaptrinh.fbomb.components.BombAttacker;
 import com.emhoclaptrinh.fbomb.components.Position;
 import com.emhoclaptrinh.fbomb.components.Velocity;
+import com.emhoclaptrinh.fbomb.utils.Constants;
 import com.emhoclaptrinh.fbomb.utils.EntityFactory;
 
 public class PlayerInputSystem extends EntityProcessingSystem implements InputProcessor {
@@ -21,6 +22,7 @@ public class PlayerInputSystem extends EntityProcessingSystem implements InputPr
 	@Mapper ComponentMapper<BombAttacker> bm;
 	
 	private boolean left,right,up,down,setBomb;
+	private boolean p2left,p2right,p2up,p2down,p2setBomb;
 	
 	@SuppressWarnings("unchecked")
 	public PlayerInputSystem() {
@@ -34,20 +36,35 @@ public class PlayerInputSystem extends EntityProcessingSystem implements InputPr
 
 	@Override
 	public boolean keyDown(int keycode) {
-		if(keycode==Input.Keys.LEFT){
+		if(keycode==Input.Keys.A){
 			left = true;
 		}
-		if(keycode==Input.Keys.RIGHT){
+		if(keycode==Input.Keys.D){
 			right = true;
 		}
-		if(keycode==Input.Keys.UP){
+		if(keycode==Input.Keys.W){
 			up = true;
 		}
-		if(keycode==Input.Keys.DOWN){
+		if(keycode==Input.Keys.S){
 			down = true;
 		}
 		if(keycode==Input.Keys.SPACE){
 			setBomb = true;
+		}
+		if(keycode==Input.Keys.LEFT){
+			p2left = true;
+		}
+		if(keycode==Input.Keys.RIGHT){
+			p2right = true;
+		}
+		if(keycode==Input.Keys.UP){
+			p2up = true;
+		}
+		if(keycode==Input.Keys.DOWN){
+			p2down = true;
+		}
+		if(keycode==Input.Keys.INSERT){
+			p2setBomb = true;
 		}
 		
 		return true;
@@ -55,22 +72,36 @@ public class PlayerInputSystem extends EntityProcessingSystem implements InputPr
 
 	@Override
 	public boolean keyUp(int keycode) {
-		if(keycode==Input.Keys.LEFT){
+		if(keycode==Input.Keys.A){
 			left = false;
 		}
-		if(keycode==Input.Keys.RIGHT){
+		if(keycode==Input.Keys.D){
 			right = false;
 		}
-		if(keycode==Input.Keys.UP){
+		if(keycode==Input.Keys.W){
 			up = false;
 		}
-		if(keycode==Input.Keys.DOWN){
+		if(keycode==Input.Keys.S){
 			down = false;
 		}
 		if(keycode==Input.Keys.SPACE){
 			setBomb = false;
 		}
-		
+		if(keycode==Input.Keys.LEFT){
+			p2left = false;
+		}
+		if(keycode==Input.Keys.RIGHT){
+			p2right = false;
+		}
+		if(keycode==Input.Keys.UP){
+			p2up = false;
+		}
+		if(keycode==Input.Keys.DOWN){
+			p2down = false;
+		}
+		if(keycode==Input.Keys.INSERT){
+			p2setBomb = false;
+		}
 		return true;
 	}
 
@@ -115,27 +146,53 @@ public class PlayerInputSystem extends EntityProcessingSystem implements InputPr
 	protected void process(Entity e) {
 		Velocity velocity = vm.get(e);
 		BombAttacker ba = bm.get(e);
-		if(ba.isStopped()){
-			if(left){
-				velocity.vectorX = -30;
+		if(world.getManager(GroupManager.class).getGroups(e).contains(Constants.EntityGroups.Player1)){
+			if(ba.isStopped()){
+				if(left){
+					velocity.vectorX = -30;
+				}
+				if(right){
+					velocity.vectorX = 30;
+				}
+				if(up){
+					velocity.vectorY = 30;
+				}
+				if(down){
+					velocity.vectorY = -30;
+				}
 			}
-			if(right){
-				velocity.vectorX = 30;
-			}
-			if(up){
-				velocity.vectorY = 30;
-			}
-			if(down){
-				velocity.vectorY = -30;
+			if(setBomb&&ba.remainedBombs>0){
+				//get position
+				Position position = pm.get(e);
+				int x = (int)Math.floor(position.x/16);
+				int y = (int)Math.floor(position.y/16);
+				EntityFactory.activeBomb(world, x, y, ba);
 			}
 		}
-		if(setBomb){
-			//get position
-			Position position = pm.get(e);
-			int x = (int)Math.floor(position.x/16);
-			int y = (int)Math.floor(position.y/16);
-			EntityFactory.activeBomb(world, x, y);
+		if(world.getManager(GroupManager.class).getGroups(e).contains(Constants.EntityGroups.Player2)){
+			if(ba.isStopped()){
+				if(p2left){
+					velocity.vectorX = -30;
+				}
+				if(p2right){
+					velocity.vectorX = 30;
+				}
+				if(p2up){
+					velocity.vectorY = 30;
+				}
+				if(p2down){
+					velocity.vectorY = -30;
+				}
+			}
+			if(p2setBomb&&ba.remainedBombs>0){
+				//get position
+				Position position = pm.get(e);
+				int x = (int)Math.floor(position.x/16);
+				int y = (int)Math.floor(position.y/16);
+				EntityFactory.activeBomb(world, x, y, ba);
+			}
 		}
+		
 		
 	}
 

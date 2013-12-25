@@ -16,7 +16,7 @@ public class EntityFactory {
 	
 	public static Entity[][] Bombs;
 	
-	public static Entity createBombAttacker(World world,float x, float y){
+	public static Entity createBombAttacker(World world,float x, float y,String prefix, String group){
 		Entity e = world.createEntity();
 		
 		e.addComponent(new Position(x,y));
@@ -28,12 +28,18 @@ public class EntityFactory {
 		e.addComponent(new Bounds(16, 16));
 		
 		Sprite sprite = new Sprite();
-		sprite.name = "Down0";
+		sprite.name = prefix+"Down0";
 		e.addComponent(sprite);
 		
-		e.addComponent(new BombAttacker());
+		BombAttacker ba = new BombAttacker();
+		for(int i = 0 ; i < ba.GoDownSprites.size();i++)ba.GoDownSprites.set(i,prefix+ba.GoDownSprites.get(i));
+		for(int i = 0 ; i < ba.GoUpSprites.size();i++)ba.GoUpSprites.set(i,prefix+ba.GoUpSprites.get(i));
+		for(int i = 0 ; i < ba.GoLeftSprites.size();i++)ba.GoLeftSprites.set(i,prefix+ba.GoLeftSprites.get(i));
+		for(int i = 0 ; i < ba.GoRightSprites.size();i++)ba.GoRightSprites.set(i,prefix+ba.GoRightSprites.get(i));
+		e.addComponent(ba);
 	
 		world.getManager(GroupManager.class).add(e, Constants.EntityGroups.BombAttacker);
+		world.getManager(GroupManager.class).add(e, group);
 		return e;
 	}
 	
@@ -97,9 +103,11 @@ public class EntityFactory {
 				}
 			}
 	}
-	public static boolean activeBomb(World world, int x, int y){
+	public static boolean activeBomb(World world, int x, int y, BombAttacker ba){
 		if(!Bombs[x][y].isEnabled()){
 			Bombs[x][y].enable();
+			Bombs[x][y].getComponent(Bomb.class).parent = ba;
+			ba.remainedBombs--;
 			return true;
 		}
 		return false;

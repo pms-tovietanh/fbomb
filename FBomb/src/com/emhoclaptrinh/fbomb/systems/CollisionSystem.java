@@ -94,12 +94,12 @@ public class CollisionSystem extends EntitySystem {
 		}
 		
 		private boolean collisionExists(Entity e1, Entity e2) {
+			if(!e1.isActive()||!e2.isActive())return false;
 			Position p1 = pm.get(e1);
 			Position p2 = pm.get(e2);
 			
 			Bounds b1 = bm.get(e1);
 			Bounds b2 = bm.get(e2);
-			
 			if(p1==null||p2==null||b1==null||b2==null)return false;
 			return (Math.abs(p1.x-p2.x)<(b1.width+b2.width)/2&&Math.abs(p1.y-p2.y)<(b1.height+b2.height)/2);
 		}
