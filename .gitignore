@@ -4,5 +4,5 @@ FBomb-robovm/
 FBomb-android/*
 FBomb-html/*
 FBomb-robovm/*
-*/bin/
-*/bin/*
+FBomb/bin/
+FBomb/bin/*
