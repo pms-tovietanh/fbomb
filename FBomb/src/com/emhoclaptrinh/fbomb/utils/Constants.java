@@ -17,4 +17,13 @@ public class Constants {
 		public static final String Fire = "Fire";
 		public static final String Bomb = "Bomb";
 	}
+	
+	public class ScriptingActions{
+		public static final String None = "none";
+		public static final String Left = "left";
+		public static final String Right = "right";
+		public static final String Up = "up";
+		public static final String Down = "down";
+		public static final String Bomb = "bomb";
+	}
 }

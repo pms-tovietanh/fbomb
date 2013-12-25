@@ -8,8 +8,8 @@ public class Main {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 		cfg.title = "FBomb";
 		cfg.useGL20 = false;
-		cfg.width = 400;
-		cfg.height = 240;
+		cfg.width = 800;
+		cfg.height = 480;
 		
 		new LwjglApplication(new BomberMan(), cfg);
 	}

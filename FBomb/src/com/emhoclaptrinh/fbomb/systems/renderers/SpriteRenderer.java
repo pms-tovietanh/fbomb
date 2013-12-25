@@ -19,7 +19,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
-import com.emhoclaptrinh.fbomb.components.BombAttacker;
 import com.emhoclaptrinh.fbomb.components.Position;
 import com.emhoclaptrinh.fbomb.components.Sprite;
 import com.emhoclaptrinh.fbomb.utils.Constants;

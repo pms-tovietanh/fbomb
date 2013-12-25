@@ -21,12 +21,10 @@ public class FireCountDownSystem extends EntityProcessingSystem {
 	@Override
 	protected void process(Entity e) {
 		Fire f = fm.get(e);
-		Position position = pm.get(e);
 		f.countDown-=world.delta;
 		
 		if(f.countDown<0){
 			e.deleteFromWorld();
-			System.out.println(position.x+" - "+position.y);
 		}
 	}
 

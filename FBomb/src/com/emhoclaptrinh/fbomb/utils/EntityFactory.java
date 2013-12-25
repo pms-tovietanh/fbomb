@@ -9,6 +9,7 @@ import com.emhoclaptrinh.fbomb.components.Bounds;
 import com.emhoclaptrinh.fbomb.components.Fire;
 import com.emhoclaptrinh.fbomb.components.LastPosition;
 import com.emhoclaptrinh.fbomb.components.Position;
+import com.emhoclaptrinh.fbomb.components.Script;
 import com.emhoclaptrinh.fbomb.components.Sprite;
 import com.emhoclaptrinh.fbomb.components.Velocity;
 
@@ -40,6 +41,12 @@ public class EntityFactory {
 	
 		world.getManager(GroupManager.class).add(e, Constants.EntityGroups.BombAttacker);
 		world.getManager(GroupManager.class).add(e, group);
+		return e;
+	}
+
+	public static Entity createScriptingBombAttacker(World world,float x, float y,String prefix, String group,String content){
+		Entity e = createBombAttacker(world, x, y, prefix, group);
+		e.addComponent(new Script(content));
 		return e;
 	}
 	
